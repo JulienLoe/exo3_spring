@@ -39,7 +39,8 @@
 
         <!--                       http://localhost:8080/dogs/xxxxxxxxxx -->
         <a th:href="@{/contacts/{contactId}(contactId=${c.id})}" class="btn btn-outline-info"><i class="bi bi-eye"></i> Details</a>
-        <a th:href="@{/api/v1/contacts/{contactId}(contactId=${c.id})}" class="btn btn-outline-danger"><i class="bi bi-eye"></i> Delete</a>
+        <a th:href="@{/contacts/delete/{contactId}(contactId=${c.id})}" class="btn btn-outline-danger"><i class="bi bi-eye"></i> Delete</a>
+        <a th:href="@{/contacts/edit/{contactId}(contactId=${c.id})}" class="btn btn-outline-warning"><i class="bi bi-eye"></i> Edit</a>
       </td>
     </tr>
     </tbody>

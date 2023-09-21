@@ -21,7 +21,6 @@ import java.util.UUID;
 public class ContactController {
 
     private final ContactService contactService;
-
     @GetMapping
     public String listContacts(Model model) {
         List<ContactDTO> contacts = contactService.getContacts();
@@ -57,6 +56,35 @@ public class ContactController {
     @PostMapping("/add")
     public String addContact(ContactDTO newContact) {
         contactService.addContact(newContact);
+
+        return "redirect:/contacts";
+    }
+
+    @GetMapping ("/delete/{contactId}")
+    public String deleteContactDetails(@PathVariable("contactId") UUID id) {
+
+
+        contactService.deleteContactById(id);
+
+
+        return "redirect:/contacts";
+
+    }
+
+    @GetMapping("/edit/{contactId}")
+    public String editContactForm(Model model, @PathVariable("contactId") UUID id) {
+
+        Optional<ContactDTO> foundContact = contactService.getContactById(id);
+
+        model.addAttribute("contact", foundContact.get());
+        model.addAttribute("mode", "edit");
+
+        return "contacts/contactForm";
+    }
+
+    @PostMapping  ("/edit/{contactId}")
+    public String patchContact(ContactDTO newContact, @PathVariable("contactId") UUID id ) {
+        contactService.editContact(id, newContact);
 
         return "redirect:/contacts";
     }

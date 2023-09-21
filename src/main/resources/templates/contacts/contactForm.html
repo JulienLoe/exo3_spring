@@ -10,7 +10,7 @@
 <main class="container">
     <h1 th:text="${(mode.equals('details') ? 'View' : 'Add') + ' a Contact'}"></h1>
     <hr>
-    <form action="#" th:action="@{/contacts/add}" method="post" th:object="${contact}">
+    <form action="#" th:href="${mode.equals('add') ? '@{/contacts/add}' : '@{/contacts/edit/{contactId}(contactId=${contact.getId()})}'}" method="post" th:object="${contact}">
         <input type="text" class="d-none" th:field="*{id}" readonly>
         <div class="mb-3">
             <label for="name" class="form-label">LastName:</label>
