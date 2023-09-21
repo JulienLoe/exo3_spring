@@ -1,12 +1,103 @@
 package com.example.exo3spring.services;
 
 
+import com.example.exo3spring.entities.Contact;
+import com.example.exo3spring.exceptions.ResourceNotFoundException;
+import com.example.exo3spring.mappers.ContactMapper;
 import com.example.exo3spring.models.ContactDTO;
+import com.example.exo3spring.repositories.ContactRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+
+@Service
+@Primary
+@RequiredArgsConstructor
+public class ContactService {
+    private final ContactRepository contactRepository;
+    private final ContactMapper contactMapper;
+
+    public List<ContactDTO> getContacts() {
+        return contactRepository
+                .findAll()
+                .stream()
+                // .map(p -> personMapper.personToPersonDto((p)))
+                .map(contactMapper::contactToContactDto)
+                .toList();
+    }
+
+    public Optional<ContactDTO> getContactById(UUID id) {
+        Optional<Contact> foundContact = contactRepository.findById(id);
+
+        if (foundContact.isPresent()){
+            ContactDTO contactDTO = contactMapper.contactToContactDto(foundContact.get());
+
+            return Optional.ofNullable(contactDTO);
+        }
+
+        throw new ResourceNotFoundException();
+    }
+
+    public ContactDTO addContact(ContactDTO dto) {
+//        Person person = personMapper.personDtoToPerson(dto);
+//        Person savedPerson = personRepository.save(person);
+//        PersonDTO savedDto = personMapper.personToPersonDto(savedPerson);
+//        return savedDto;
+
+        return contactMapper.contactToContactDto(contactRepository
+                .save(contactMapper.contactDTOToPerson(dto)));
+    }
+
+    public Boolean deleteContactById(UUID id) {
+        Contact foundContact = contactRepository.findById(id).stream().findFirst().orElse(null);
+
+        if (foundContact != null){
+
+            contactRepository.delete(foundContact);
+
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public ContactDTO editContact(UUID id, ContactDTO newDatas){
+        AtomicReference<ContactDTO> atomicReference = new AtomicReference<>();
+
+        Optional<Contact> foundContact = contactRepository.findById(id);
+        ContactDTO contactDTO = contactMapper.contactToContactDto(foundContact.get());
+
+        foundContact.ifPresentOrElse(found -> {
+            if(newDatas.getLastName() != null) {
+                found.setLastName(newDatas.getLastName());
+            }
+
+            if(newDatas.getFirstName() != null) {
+                found.setFirstName(newDatas.getFirstName());
+            }
+
+            if (newDatas.getBirthDate() != null) {
+                found.setBirthDate(newDatas.getBirthDate());
+            }
+
+            atomicReference.set(found);
+        }, () -> {
+            atomicReference.set(null);
+        });
+
+
+        return atomicReference.get();
+    }
+}
+
+
+
+
 
 @Service
 @Primary
