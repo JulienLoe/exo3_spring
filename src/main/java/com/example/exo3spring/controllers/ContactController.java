@@ -82,10 +82,10 @@ public class ContactController {
         return "contacts/contactForm";
     }
 
-    @PostMapping  ("/edit/{contactId}")
-    public String patchContact(ContactDTO newContact, @PathVariable("contactId") UUID id ) {
-        contactService.editContact(id, newContact);
-
-        return "redirect:/contacts";
-    }
+//    @PostMapping  ("/edit/{contactId}")
+//    public String patchContact(ContactDTO newContact, @PathVariable("contactId") UUID id ) {
+//        contactService.editContact(id, newContact);
+//
+//        return "redirect:/contacts";
+//    }
 }

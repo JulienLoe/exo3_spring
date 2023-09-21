@@ -10,17 +10,19 @@ import java.time.LocalDate;
 
 @Mapper
 public interface ContactMapper {
+    @Mapping(source = "blabla", target = "firstName")
+    Contact contactDTOToPerson(ContactDTO dto);
 
-
+    @Mapping(source = "firstName", target = "blabla")
     @Mapping(source = "birthDate", target = "age", qualifiedByName = "convertDateToAge")
     ContactDTO contactToContactDto(Contact contact);
-    Contact contactDTOToPerson(ContactDTO dto);
+
 
 
     @Named("convertDateToAge")
     public static Integer convertDateToAge(LocalDate date) {
         LocalDate now = LocalDate.now();
-        Integer age = now.getYear() - date.getYear();
+        int age = now.getYear() - date.getYear();
 
         if (now.minusYears(age).isBefore(date)) {
             age--;
