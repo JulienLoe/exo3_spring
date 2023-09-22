@@ -29,7 +29,7 @@
     <tr th:each="c : ${contacts}">
       <td th:text="${c.blabla}"></td>
       <td th:text="${c.lastName}"></td>
-      <td th:text="${#temporals.format(c.birthDate, 'yyyy-MM-dd') + ' (' + c.age + 'yo)'}"></td>
+      <td th:text="${c.birthDate}"></td>
       <td>
         <!--                       http://localhost:8080/dogs/dogId  -->
         <!--                        <a th:href="@{/dogs/dogId}" class="btn btn-outline-info"><i class="bi bi-eye"></i> Details</a>-->

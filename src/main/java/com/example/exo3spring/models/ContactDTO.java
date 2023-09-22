@@ -17,7 +17,7 @@ import java.util.UUID;
         private UUID id;
         private String blabla;
         private String lastName;
-        private LocalDate birthDate;
-        private Integer age;
+        private String birthDate;
+//        private Integer age;
     }
 

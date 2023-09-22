@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -77,15 +78,15 @@ public class ContactController {
         Optional<ContactDTO> foundContact = contactService.getContactById(id);
 
         model.addAttribute("contact", foundContact.get());
-        model.addAttribute("mode", "edit");
+        model.addAttribute("mode", "add");
 
         return "contacts/contactForm";
     }
 
-//    @PostMapping  ("/edit/{contactId}")
-//    public String patchContact(ContactDTO newContact, @PathVariable("contactId") UUID id ) {
-//        contactService.editContact(id, newContact);
-//
-//        return "redirect:/contacts";
-//    }
+    @PostMapping  ("/edit/{contactId}")
+    public String patchContact(ContactDTO newContact, @PathVariable("contactId") UUID id ) {
+        contactService.editContact(id, newContact);
+
+        return "redirect:/contacts";
+    }
 }

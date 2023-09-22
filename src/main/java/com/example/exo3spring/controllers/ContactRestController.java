@@ -62,14 +62,14 @@ public class ContactRestController {
         }
     }
 
-//    @PatchMapping("/{contactId}")
-//    public ContactDTO editContact(@PathVariable("contactId") UUID id, @RequestBody ContactDTO contactData) {
-//        Optional<ContactDTO> foundContact = contactService.getContactById(id);
-//
-//        if (foundContact.isPresent()) {
-//            return contactService.editContact(id, contactData);
-//        } else {
-//            throw new ResourceNotFoundException();
-//        }
-//    }
+    @PatchMapping("/{contactId}")
+    public ContactDTO editContact(@PathVariable("contactId") UUID id, @RequestBody ContactDTO contactData) {
+        Optional<ContactDTO> foundContact = contactService.getContactById(id);
+
+        if (foundContact.isPresent()) {
+            return contactService.editContact(id, contactData);
+        } else {
+            throw new ResourceNotFoundException();
+        }
+    }
 }

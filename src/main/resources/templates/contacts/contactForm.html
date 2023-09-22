@@ -22,7 +22,8 @@
         </div>
         <div class="mb-3">
             <label for="age" class="form-label">Age:</label>
-            <input type="number" min="18" max="110" id="age" class="form-control" th:field="*{age}" th:readonly="${mode.equals('details')}" th:required="${mode.equals('add')}">
+            <input type="date" id="age" class="form-control"  th:field="*{birthDate}"  th:readonly="${mode.equals('details')}" th:required="${mode.equals('add')}">
+
         </div>
         <div class="text-end">
             <a th:if="${mode.equals('details')}" class="btn btn-secondary" th:href="@{/contacts}"><i class="bi bi-arrow-counterclockwise"></i> Return</a>
