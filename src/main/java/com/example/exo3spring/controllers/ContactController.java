@@ -22,9 +22,19 @@ import java.util.UUID;
 public class ContactController {
 
     private final ContactService contactService;
+
     @GetMapping
     public String listContacts(Model model) {
         List<ContactDTO> contacts = contactService.getContacts();
+
+        model.addAttribute("contacts", contacts);
+
+        return "contacts/list";
+    }
+
+    @GetMapping("/mot")
+    public String listContactsBy(Model model, @RequestParam(value = "mot", defaultValue = "") String mot) {
+        List<ContactDTO> contacts = contactService.getContactsBy(mot);
 
         model.addAttribute("contacts", contacts);
 

@@ -31,6 +31,14 @@ public class ContactService {
                 .toList();
     }
 
+    public List<ContactDTO> getContactsBy(String string) {
+        return contactRepository.findAllByFirstNameStartingWith(string)
+                .stream()
+                // .map(p -> personMapper.personToPersonDto((p)))
+                .map(contactMapper::contactToContactDto)
+                .toList();
+    }
+
     public Optional<ContactDTO> getContactById(UUID id) {
         Optional<Contact> foundContact = contactRepository.findById(id);
 
