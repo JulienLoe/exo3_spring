@@ -18,7 +18,7 @@ import java.util.List;
 
 public class CSVHelper {
     public static String TYPE = "text/csv";
-    static String[] HEADERs = { "belongs_to_collection","budget","genres","homepage","id", "imdb_id","original_language","original_title","overview","popularity","poster_path","production_companies","production_countries", "release_date","revenue", "runtime","spoken_languages", "status", "tagline", "title", "video", "vote_average", "vote_count"};
+    static String[] HEADERs = { "Id","adult","belongs_to_collection","budget","genres","homepage","id", "imdb_id","original_language","original_title","overview","popularity","poster_path","production_companies","production_countries", "release_date","revenue", "runtime","spoken_languages", "status", "tagline", "title", "video", "vote_average", "vote_count"};
 
     public static boolean hasCSVFormat(MultipartFile file) {
 
@@ -40,23 +40,24 @@ public class CSVHelper {
 
             for (CSVRecord csvRecord : csvRecords) {
                 Tutorial tutorial = new Tutorial(
+                        Integer.parseInt(csvRecord.get("Id")),
                         csvRecord.get("adult"),
                         csvRecord.get("belongs_to_collection"),
                         Long.parseLong(csvRecord.get("budget")),
                         csvRecord.get("genres"),
                         csvRecord.get("homepage"),
-                        csvRecord.get("id"),
+                        Integer.parseInt(csvRecord.get("id")),
                         csvRecord.get("imdb_id"),
                         csvRecord.get("original_language"),
                         csvRecord.get("original_title"),
                         csvRecord.get("overview"),
                         csvRecord.get("popularity"),
                         csvRecord.get("poster_path"),
-                        csvRecord.get("production"),
-                        csvRecord.get(" production_countries"),
+                        csvRecord.get("production_companies"),
+                        csvRecord.get("production_countries"),
                         csvRecord.get("release_date"),
                         Long.parseLong(csvRecord.get("revenue")),
-                        Long.parseLong(csvRecord.get("runtime")),
+                        csvRecord.get("runtime"),
                         csvRecord.get("spoken_languages"),
                         csvRecord.get("status"),
                         csvRecord.get("tagline"),
