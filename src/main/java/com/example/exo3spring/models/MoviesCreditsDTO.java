@@ -71,11 +71,11 @@ public class MoviesCreditsDTO {
 
         public Credits credits;
 
-        public List<ActeurDTO> crew;
+        public String crew;
 
 
 
-        public MoviesCreditsDTO(int Id, String adult, String belongs_to_collection, long budget, String genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, String poster_path, String production_companies,String production_countries, String popularity, String release_date, long revenue, String runtime, String spoken_languages, String status, String tagline, String title, String video, String vote_average, long vote_count, List<ActeurDTO> crew) {
+        public MoviesCreditsDTO(int Id, String adult, String belongs_to_collection, long budget, String genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, String poster_path, String production_companies,String production_countries, String popularity, String release_date, long revenue, String runtime, String spoken_languages, String status, String tagline, String title, String video, String vote_average, long vote_count, String crew) {
             this.Id = Id;
             this.adult = adult;
             this.belongs_to_collection = belongs_to_collection;
@@ -309,12 +309,11 @@ public class MoviesCreditsDTO {
             this.homepage = homepage;
         }
 
-    public List<ActeurDTO> getCrew() {
+    public String getCrew() {
         return crew;
     }
 
-    public void setCrew(List<ActeurDTO> crew) {
+    public void setCrew(String crew) {
         this.crew = crew;
     }
-
 }

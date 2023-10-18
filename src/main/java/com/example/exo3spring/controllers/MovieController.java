@@ -1,6 +1,7 @@
 package com.example.exo3spring.controllers;
 
 
+import com.example.exo3spring.models.MoviesCreditsDTO;
 import com.example.exo3spring.models.Tutorial;
 import com.example.exo3spring.repositories.RequestRepository;
 import com.example.exo3spring.repositories.TutorialRepository;
@@ -24,13 +25,13 @@ import java.util.List;
     RequestRepository requestRepository;
 
         @GetMapping("/tutorials")
-        public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
+        public ResponseEntity<List<MoviesCreditsDTO>> getAllTutorials(@RequestParam(required = false) String title) {
             try {
-                List<Tutorial> tutorials = new ArrayList<Tutorial>();
+                List<MoviesCreditsDTO> tutorials = new ArrayList<MoviesCreditsDTO>();
 
-                if (title == null)
-                    tutorialRepository.findAll().forEach(tutorials::add);
-                else
+//                if (title == null)
+//                    tutorialRepository.findAll().forEach(tutorials::add);
+
                     requestRepository.findByTitleContaining(title).forEach(tutorials::add);
 
                 if (tutorials.isEmpty()) {
