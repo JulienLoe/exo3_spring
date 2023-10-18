@@ -9,6 +9,7 @@ import com.example.exo3spring.repositories.ContactRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,8 +24,10 @@ public class ContactService {
     private final ContactMapper contactMapper;
 
     public List<ContactDTO> getContacts() {
+        Sort sortById = Sort.by(List.of(Sort.Order.by("id")));
+
         return contactRepository
-                .findAll()
+                .findAll(sortById)
                 .stream()
                 // .map(p -> personMapper.personToPersonDto((p)))
                 .map(contactMapper::contactToContactDto)

@@ -33,6 +33,16 @@ public class CSVController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
     }
 
+    @PostMapping("/upload/credits")
+    public ResponseEntity<ResponseMessage> uploadFileCredits(@RequestParam("credits") MultipartFile credits) {
+        String message = "";
+
+
+        fileService.saveCredits(credits);
+        message = "Please upload a csv credits file!";
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
+    }
+
     @GetMapping("/tutorials")
     public ResponseEntity<List<Tutorial>> getAllTutorials() {
         try {
