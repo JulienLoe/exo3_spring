@@ -39,8 +39,8 @@ public class CSVHelperCredits {
 
             for (CSVRecord csvRecord : csvRecords) {
                 Credits credit = new Credits(
-                        csvRecord.get("crew"),
                         csvRecord.get("cast"),
+                        csvRecord.get("crew"),
                         Integer.parseInt(csvRecord.get("id"))
 
 
