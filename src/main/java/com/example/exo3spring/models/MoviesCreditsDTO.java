@@ -11,6 +11,63 @@ import java.util.List;
 import java.util.UUID;
 
 
+//public record MoviesCreditsDTO (
+//        int Id,
+//
+//        String adult,
+//
+//        String belongs_to_collection;
+//        Long budget;
+//
+//        String genres;
+//
+//        String homepage;
+//
+//
+//        int id;
+//
+//
+//
+//        String imdb_id;
+//
+//        String original_language;
+//
+//        public String original_title;
+//
+//        public String overview;
+//
+//        public String popularity;
+//
+//        public String poster_path;
+//
+//        public String production_companies;
+//
+//        public String production_countries;
+//
+//        public String release_date;
+//        public Long revenue;
+//
+//        public String runtime;
+//
+//        public String spoken_languages;
+//
+//        public String status;
+//
+//        public String tagline;
+//
+//        public String title;
+//
+//        public String video;
+//
+//        public String vote_average;
+//        public Long vote_count;
+//
+//
+//        public Credits credits;
+//
+//        public String crew;
+//) {}
+
 @Data
 @AllArgsConstructor
 @Builder
@@ -22,7 +79,7 @@ public class MoviesCreditsDTO {
 
         public String adult;
 
-        public String belongs_to_collection;
+        public List<Images> belongs_to_collection;
         public Long budget;
 
         public String genres;
@@ -75,7 +132,7 @@ public class MoviesCreditsDTO {
 
 
 
-        public MoviesCreditsDTO(int Id, String adult, String belongs_to_collection, long budget, String genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, String poster_path, String production_companies,String production_countries, String popularity, String release_date, long revenue, String runtime, String spoken_languages, String status, String tagline, String title, String video, String vote_average, long vote_count, String crew) {
+        public MoviesCreditsDTO(int Id, String adult, List<Images> belongs_to_collection, long budget, String genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, String poster_path, String production_companies,String production_countries, String popularity, String release_date, long revenue, String runtime, String spoken_languages, String status, String tagline, String title, String video, String vote_average, long vote_count, String crew) {
             this.Id = Id;
             this.adult = adult;
             this.belongs_to_collection = belongs_to_collection;
@@ -277,15 +334,15 @@ public class MoviesCreditsDTO {
             this.adult = adult;
         }
 
-        public String getBelongs_to_collection() {
-            return belongs_to_collection;
-        }
+    public List<Images> getBelongs_to_collection() {
+        return belongs_to_collection;
+    }
 
-        public void setBelongs_to_collection(String belongs_to_collection) {
-            this.belongs_to_collection = belongs_to_collection;
-        }
+    public void setBelongs_to_collection(List<Images> belongs_to_collection) {
+        this.belongs_to_collection = belongs_to_collection;
+    }
 
-        public Long getBudget() {
+    public Long getBudget() {
             return budget;
         }
 

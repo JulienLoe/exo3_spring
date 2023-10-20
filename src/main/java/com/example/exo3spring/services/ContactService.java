@@ -4,6 +4,7 @@ package com.example.exo3spring.services;
 import com.example.exo3spring.entities.Contact;
 import com.example.exo3spring.exceptions.ResourceNotFoundException;
 import com.example.exo3spring.mappers.ContactMapper;
+import com.example.exo3spring.models.ClientDTO;
 import com.example.exo3spring.models.ContactDTO;
 import com.example.exo3spring.repositories.ContactRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,9 @@ public class ContactService {
 
     public List<ContactDTO> getContacts() {
         Sort sortById = Sort.by(List.of(Sort.Order.by("id")));
+
+        ClientDTO dto = new ClientDTO("John", "DUPONT");
+
 
         return contactRepository
                 .findAll(sortById)

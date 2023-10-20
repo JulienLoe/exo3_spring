@@ -17,9 +17,9 @@ public class RequestRepository {
 
 
 
-//    public List<Tutorial> findAll() {
-//        return jdbcTemplate.query("SELECT * from tutorials", BeanPropertyRowMapper.newInstance(Tutorial.class));
-//    }
+    public List<MoviesCreditsDTO> findAll() {
+        return jdbcTemplate.query("SELECT * from tutorials", BeanPropertyRowMapper.newInstance(MoviesCreditsDTO.class));
+    }
 
 
     public List<MoviesCreditsDTO> findByTitleContaining(String title) {

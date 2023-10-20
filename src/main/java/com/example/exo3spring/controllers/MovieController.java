@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*")
     @RestController
     @RequestMapping("/api")
     public class MovieController {
@@ -29,8 +29,7 @@ import java.util.List;
             try {
                 List<MoviesCreditsDTO> tutorials = new ArrayList<MoviesCreditsDTO>();
 
-//                if (title == null)
-//                    tutorialRepository.findAll().forEach(tutorials::add);
+
 
                     requestRepository.findByTitleContaining(title).forEach(tutorials::add);
 
@@ -43,4 +42,27 @@ import java.util.List;
                 return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
+
+    @GetMapping("/movies/all")
+    public ResponseEntity<List<MoviesCreditsDTO>> getAllMovies(@RequestParam(required = false) String title) {
+        try {
+
+            List<MoviesCreditsDTO> tutorial = new ArrayList<>();
+
+
+                requestRepository.findAll().forEach(movies ->tutorial.add(movies));
+
+
+
+
+
+            if (tutorial.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(tutorial, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

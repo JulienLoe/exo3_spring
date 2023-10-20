@@ -2,6 +2,8 @@ package com.example.exo3spring.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "tutorials")
@@ -13,8 +15,8 @@ public class Tutorial {
     public int Id;
         @Column(length = 1200)
         public String adult;
-    @Column(length = 1200)
-        public String belongs_to_collection;
+   @ElementCollection
+        public List<Images> belongs_to_collection;
         public Long budget;
     @Column(length = 1200)
         public String genres;
@@ -298,6 +300,8 @@ public class Tutorial {
     public void setHomepage(String homepage) {
         this.homepage = homepage;
     }
+
+
 }
 
 
