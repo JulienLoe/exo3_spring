@@ -1,5 +1,6 @@
 package com.example.exo3spring.helper;
 
+import com.example.exo3spring.models.ActeurDTO;
 import com.example.exo3spring.models.Credits;
 import com.example.exo3spring.models.Tutorial;
 import org.apache.commons.csv.CSVFormat;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,7 +42,8 @@ public class CSVHelperCredits {
             for (CSVRecord csvRecord : csvRecords) {
                 Credits credit = new Credits(
                         csvRecord.get("crew"),
-                        csvRecord.get("cast"),
+                        csvRecord.get("cast").split("\""),
+
                         Integer.parseInt(csvRecord.get("id"))
 
 

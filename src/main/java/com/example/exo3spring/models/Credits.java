@@ -2,6 +2,8 @@ package com.example.exo3spring.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "credits")
 public class Credits {
@@ -15,8 +17,8 @@ public class Credits {
     @Column(length = 100000, name = "casting")
     public String cast;
 
-    @Column(length = 100000)
-    public String crew;
+    @Transient
+    public String[] crew;
 
     @Column(name = "credits_id_csv")
 
@@ -32,7 +34,7 @@ public class Credits {
 
 
 
-    public Credits(String cast, String crew, int id) {
+    public Credits(String cast, String[] crew, int id) {
 //        this.cast = new ArrayList<>();
 //     this.crew = new ArrayList<>();
         this.cast = cast;
