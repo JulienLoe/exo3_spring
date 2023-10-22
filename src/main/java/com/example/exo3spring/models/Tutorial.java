@@ -15,8 +15,8 @@ public class Tutorial {
     public int Id;
         @Column(length = 1200)
         public String adult;
-   @ElementCollection
-        public List<Images> belongs_to_collection;
+
+        public String belongs_to_collection;
         public Long budget;
     @Column(length = 1200)
         public String genres;

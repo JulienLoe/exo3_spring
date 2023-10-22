@@ -1,17 +1,29 @@
 package com.example.exo3spring.models;
 
-public class Images {
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "movies_Images")
+public class PathImages {
+    @Id
     public int id;
     public String name;
     public String poster_path;
     public String backdrop_path;
 
-    public Images(int id, String name, String poster_path, String backdrop_path) {
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    Tutorial tutorial;
+
+    public PathImages(int id, String name, String poster_path, String backdrop_path) {
         this.id = id;
         this.name = name;
         this.poster_path = poster_path;
         this.backdrop_path = backdrop_path;
+    }
+
+    public PathImages() {
+
     }
 
     public int getId() {

@@ -79,12 +79,14 @@ public class MoviesCreditsDTO {
 
         public String adult;
 
-        public List<Images> belongs_to_collection;
+        public String[] belongs_to_collection;
         public Long budget;
 
         public String genres;
 
         public String homepage;
+
+        public String [] tab;
 
 
         public int id;
@@ -132,7 +134,7 @@ public class MoviesCreditsDTO {
 
 
 
-        public MoviesCreditsDTO(int Id, String adult, List<Images> belongs_to_collection, long budget, String genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, String poster_path, String production_companies,String production_countries, String popularity, String release_date, long revenue, String runtime, String spoken_languages, String status, String tagline, String title, String video, String vote_average, long vote_count, String crew) {
+        public MoviesCreditsDTO(int Id, String adult, String [] belongs_to_collection, long budget, String genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, String poster_path, String production_companies,String production_countries, String popularity, String release_date, long revenue, String runtime, String spoken_languages, String status, String tagline, String title, String video, String vote_average, long vote_count, String crew) {
             this.Id = Id;
             this.adult = adult;
             this.belongs_to_collection = belongs_to_collection;
@@ -334,11 +336,12 @@ public class MoviesCreditsDTO {
             this.adult = adult;
         }
 
-    public List<Images> getBelongs_to_collection() {
-        return belongs_to_collection;
+    public String[] getBelongs_to_collection(String list) {
+           tab = new String[]{list.replace("\"", "")};
+        return tab;
     }
 
-    public void setBelongs_to_collection(List<Images> belongs_to_collection) {
+    public void setBelongs_to_collection(String[] belongs_to_collection) {
         this.belongs_to_collection = belongs_to_collection;
     }
 

@@ -44,7 +44,7 @@ import java.util.List;
         }
 
     @GetMapping("/movies/all")
-    public ResponseEntity<List<MoviesCreditsDTO>> getAllMovies(@RequestParam(required = false) String title) {
+    public ResponseEntity<List<MoviesCreditsDTO>> getAllMovies() {
         try {
 
             List<MoviesCreditsDTO> tutorial = new ArrayList<>();

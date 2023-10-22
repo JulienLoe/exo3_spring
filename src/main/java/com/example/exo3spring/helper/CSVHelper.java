@@ -1,6 +1,7 @@
 package com.example.exo3spring.helper;
 
 
+import com.example.exo3spring.models.PathImages;
 import com.example.exo3spring.models.Tutorial;
 
 import org.apache.commons.csv.CSVFormat;
@@ -68,7 +69,10 @@ public class CSVHelper {
 
 
 
+
                 );
+
+
 
                 tutorials.add(tutorial);
             }
